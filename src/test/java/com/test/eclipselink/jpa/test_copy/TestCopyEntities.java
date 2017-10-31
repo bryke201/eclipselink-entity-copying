@@ -52,7 +52,7 @@ import com.test.eclipselink.jpa.test_copy.entities.RootEntity;
  * For now, let's set up the environment. 
  *
  */
-public class CopyEntityTests {
+public class TestCopyEntities {
 
 	private static EntityManagerFactory emf;
 
@@ -300,7 +300,7 @@ public class CopyEntityTests {
 		cg.addAttribute("data2");
 		cg.addAttribute("association.lazyData3");
 		cg.cascadeAllParts();
-		cg.setShouldResetPrimaryKey(true);
+
 		RootEntity rootEntCopy = copyEntity(em, rootEnt, cg);
 
 		//because cascade_all_parts initializes ALL associations, they should be initialized now:
@@ -577,7 +577,7 @@ public class CopyEntityTests {
 		CopyGroup cg = new CopyGroup();
 		cg.addAttribute("data1");
 		cg.addAttribute("association.data2");
-		cg.setShouldResetPrimaryKey(true);
+
 		//instead of copying the root, we copy its "association"
 		RootEntity copyRoot = copyEntity(em, rootEnt, cg);
 

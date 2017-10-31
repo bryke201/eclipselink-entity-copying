@@ -25,13 +25,13 @@
 			<groupId>org.eclipse.persistence</groupId>
 			<artifactId>eclipselink</artifactId>
 			<version>2.5.2</version>
-			<scope>test</scope>
+			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.hsqldb</groupId>
 			<artifactId>hsqldb</artifactId>
 			<version>2.4.0</version>
-			<scope>test</scope>
+			<scope>compile</scope>
 		</dependency>
 	</dependencies>
 	<build>
@@ -62,4 +62,9 @@
 			</plugin>
 		</plugins>
 	</build>
+	<description>A series of tests that describe the behavior of entity cloning in Eclipselink 2.5.2; JPA 2.1.0.</description>
+	<organization>
+		<name>bryke</name>
+		<url>http://briaguy.blogspot.com/</url>
+	</organization>
 </project>
