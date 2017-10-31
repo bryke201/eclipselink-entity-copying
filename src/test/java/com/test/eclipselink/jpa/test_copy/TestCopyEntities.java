@@ -452,12 +452,22 @@ public class TestCopyEntities {
 		assertAttributeNotInitialized(rootEntCopy.getAssociation(), "lazyData3");
 		assertAssociationNotInitialized(rootEntCopy.getAssociation(), "deepAssocEntity");
 
-		//it seems that "ALL attributes" only means the ones IMMEDIATE TO THE ENTITY BEING COPIED
-		//let's confirm that "association1" is also fetch using its defaults:
+		/**
+		 * =================================================================================================
+		 * ! the following section is actually a gray area which needs more observation;
+		 * 
+		 * this section can actually be disregarded since we won't really use CascadeTree with an empty tree.
+		 */
+		//it seems that "ALL attributes" currently only means the ones immediate to the entity being copied
+		//perhaps this is because all associations are lazy by default, so initializing associations would only take them one level further
+		//let's confirm that "association1" is also fetched using its defaults:
 		assertAttributeInitialized(rootEntCopy.getAssociation1(), "data1");
 		assertAttributeInitialized(rootEntCopy.getAssociation1(), "data2");
 		//notice that this is also not initialized even if this association points back to the root
 		assertAssociationNotInitialized(rootEntCopy.getAssociation1(), "circularRef");
+		/**
+		 * ====================================================================================================
+		 */
 
 		/**
 		 * 
@@ -509,6 +519,7 @@ public class TestCopyEntities {
 	@Test
 	//let's just confirm that an empty copy group that initialization "ALL attributes"
 	//only initializes the ones IMMEDIATE TO THE ENTITY TO BE COPIED
+	//this should still be considered a gray area though, as the results may change depending on the configuration of the entities themselves
 	public void CASC_TREE_EMPTY_GROUP_copy_association() {
 		EntityManager em = createEM();
 
